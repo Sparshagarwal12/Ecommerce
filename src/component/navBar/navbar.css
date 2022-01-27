@@ -37,6 +37,10 @@
   text-decoration: none;
   color: white;
 }
+.linker:hover{
+  text-decoration: none;
+  color: white;
+}
 .nav-bar-category-item1:after{
   content: '';
 
