@@ -6,7 +6,7 @@ import ControlledCarousel from '../../component/Carousel';
 import { productName, topProduct } from '../../model/product-model';
 import ProductGrid from '../../component/ProductGrid';
 
-function HomePage() {
+function HomePage(props) {
     return (
         <>
             <div>
@@ -24,7 +24,7 @@ function HomePage() {
 
                 {/* Display Top Products in grid view */}
                 <div className='top-product-heading'>Top Products</div>
-                <ProductGrid productName={productName} />
+                <ProductGrid productName={productName} handleCart={props.handleCart} />
                 <div className='empty-space'></div>
             </div>
         </>

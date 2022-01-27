@@ -1,6 +1,8 @@
 import React from 'react';
 
 function ProductGrid(props) {
+
+
     return <div className='top-product-list-view'> {
         props.productName.map((item) => {
             return (<><div className='product-list-card'>
@@ -9,7 +11,7 @@ function ProductGrid(props) {
                 <div className='product-list-description'>{item.description}</div>
                 <div className='price-cart-row'>
                     <div className='product-list-price'>{item.price}</div>
-                    <div className='add-to-cart'>Add to Card</div>
+                    <button className='add-to-cart' onClick={()=>props.handleCart(item)}>Add to Cart</button>
                 </div>
             </div></>);
         })

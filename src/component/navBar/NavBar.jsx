@@ -3,6 +3,7 @@ import '../navBar/navbar.css';
 import icon from '../../assets/icon.png';
 import { Link, Outlet } from 'react-router-dom';
 function NavBar() {
+    
     return (
         <><div className='nav-bar-design'>
             <div className='nav-bar-category'>
