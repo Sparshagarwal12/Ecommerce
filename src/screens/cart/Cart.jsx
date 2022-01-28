@@ -4,18 +4,20 @@ import '../cart/cart.css';
 import CartCard from '../../component/CartCard';
 
 function Cart(props) {
-    const cartData = JSON.parse(localStorage.getItem("cartData"));
-    console.log(typeof cartData);
-
+    console.log(props.total);
     return <div className='cart-page-view'>
-        <div className='card-page-list'>
-            {
-                cartData.map((value) => {
-                    return <CartCard item={value} />
-                })
-            }
-        </div>
-        <Calculation />
+        {props.cartData !== null ? <>
+            <div className='card-page-list'>
+                {
+                    props.cartData.map((value, index) => {
+                        return <CartCard item={value} changeQuantity={props.changeQuantity} delete={props.delete} index={index} />
+                    })
+                }
+            </div>
+            <Calculation item={props.cartData} total={props.total} />
+        </> :
+            <div>No Data</div>
+        }
     </div>;
 }
 

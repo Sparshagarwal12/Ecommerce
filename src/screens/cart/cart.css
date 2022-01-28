@@ -54,25 +54,26 @@
 .cart-page-product-quantity{
     display: flex;
     justify-content: space-around;
-    width: 25%;
+    width: 30%;
     margin-top: 40px;
     font-size: 20px;
 }
 
 
 .cart-page-product-quantity-increase{
-  padding: 5px;
-  text-align: center;
-  background-color: #6B8E23;
-  color: white;
-  height: 20px;
-  margin-top: 8px;
-  border-radius: 20px;
-  font-size: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
+    padding: 5px;
+    text-align: center;
+    background-color: #6B8E23;
+    color: white;
+    height: 20px;
+    margin-top: 8px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
 }
 .cart-page-product-quantity-value{
     font-family: 'Nunito', sans-serif;
@@ -82,16 +83,16 @@
     background-color: #6B8E23;
     border-radius: 20px;
     color: white;
-  padding: 5px;
-  text-align: center;
-  margin-top: 8px;
-
-  height: 20px;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
+    padding: 5px;
+    border: none;
+    text-align: center;
+    margin-top: 8px;
+    height: 20px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
 }
 
 .cart-page-product-price{

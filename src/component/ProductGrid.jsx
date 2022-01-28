@@ -10,7 +10,7 @@ function ProductGrid(props) {
                 <div className='product-list-name'>{item.name}</div>
                 <div className='product-list-description'>{item.description}</div>
                 <div className='price-cart-row'>
-                    <div className='product-list-price'>{item.price}</div>
+                    <div className='product-list-price'>Rs. {item.price}</div>
                     <button className='add-to-cart' onClick={()=>props.handleCart(item)}>Add to Cart</button>
                 </div>
             </div></>);

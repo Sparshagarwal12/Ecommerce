@@ -18,7 +18,58 @@ import MyOrder from './screens/myorder/MyOrder';
 import './screens/auth/signinPage/signin.css';
 const App = () => {
 
+
+
+  //for getting data from local storage
+  const cartData = JSON.parse(localStorage.getItem("cartData"));
+
+
+  //for adding item in cart
   const [cartItem, addToCard] = useState([]);
+
+  //for changing quantity
+  const [quantity, changeQuantity] = useState({});
+
+
+  let counter;
+  function manageQuantity(flag, id) {
+    if (flag === "increase") {
+      changeQuantity(() => {
+        return cartData.map((value, i) => {
+          if (value["id"] === id) {
+            if (Number(cartData[i]["quantity"]) > cartData[i]["selectQuantity"]) {
+              counter = cartData[i]["selectQuantity"] + 1;
+            }
+            else {
+              alert("Limit Exceeds");
+              counter = cartData[i]["quantity"]
+            }
+            cartData[i]["selectQuantity"] = counter;
+            localStorage.setItem("cartData", JSON.stringify([...cartData]));
+          }
+        });
+      })
+    }
+    else {
+      changeQuantity(() => {
+        return cartData.map((value, i) => {
+          if (value["id"] === id) {
+            if (cartData[i]["selectQuantity"] > 1) {
+              counter = cartData[i]["selectQuantity"] - 1;
+            }
+            else {
+              alert("Atlease Mini");
+              counter = 1;
+            }
+
+            cartData[i]["selectQuantity"] = counter;
+            localStorage.setItem("cartData", JSON.stringify([...cartData]));
+          }
+        });
+      })
+    }
+  }
+
 
   function handleCart(item) {
     addToCard((oldTask) => {
@@ -28,19 +79,18 @@ const App = () => {
         return [...oldTask, item];
       }
       else {
-        var data = oldTask.find((value, i) => {
-          return oldTask[i.toString()]["id"] === item["id"];
+        var data = cartData.find((value, i) => {
+          return cartData[i.toString()]["id"] === item["id"];
         });
-        console.log(data, "data");
         if (data === undefined) {
           alert("Product Added Successfully")
-          localStorage.setItem("cartData", JSON.stringify([...oldTask, item]));
-          return [...oldTask, item];
+          localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
+          return [...cartData, item];
         }
         else {
           alert("Product Already Added");
-          localStorage.setItem("cartData", JSON.stringify([...oldTask]));
-          return [...oldTask];
+          localStorage.setItem("cartData", JSON.stringify([...cartData]));
+          return [...cartData];
         }
       }
     });
@@ -58,7 +108,7 @@ const App = () => {
           <Route element={<NavBar />} >
             <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
             <Route path="category-page" element={<Category />} />
-            <Route path="cart-page" element={<Cart/>} />
+            <Route path="cart-page" element={<Cart cartData={cartData} changeQuantity={manageQuantity} />} />
             <Route path="my-orders-page" element={<MyOrder />} />
           </Route>
         </Route>
