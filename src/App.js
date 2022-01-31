@@ -17,83 +17,85 @@ import MyOrder from './screens/myorder/MyOrder';
 //Imports for Styling
 import './screens/auth/signinPage/signin.css';
 const App = () => {
-
-
-
-  //for getting data from local storage
   const cartData = JSON.parse(localStorage.getItem("cartData"));
 
 
+  //for getting data from local storage
+
   //for adding item in cart
   const [cartItem, addToCard] = useState([]);
+  const [deleteItem, deleteCartItem] = useState([]);
 
-  //for changing quantity
-  const [quantity, changeQuantity] = useState({});
+  // function handleCart(item) {
+  //   addToCard((oldTask) => {
+  //     if (oldTask && !oldTask.length) {
+  //       console.log(cartData);
 
+  //       alert("Product Added Successfully")
+  //       localStorage.setItem("cartData", JSON.stringify([...oldTask, item]));
+  //       return [...oldTask, item];
+  //     }
+  //     else {
+  //       var data = cartData.find((value, i) => {
+  //         return cartData[i.toString()]["id"] === item["id"];
+  //       });
+  //       if (data === undefined) {
+  //         console.log(cartData);
+  //         alert("Product Added Successfully")
+  //         localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
+  //         return [...cartData, item];
+  //       }
+  //       else {
+  //         alert("Product Already Added");
+  //         localStorage.setItem("cartData", JSON.stringify([...cartData]));
+  //         return [...cartData];
+  //       }
+  //     }
+  //   });
+  // }
 
-  let counter;
-  function manageQuantity(flag, id) {
-    if (flag === "increase") {
-      changeQuantity(() => {
-        return cartData.map((value, i) => {
-          if (value["id"] === id) {
-            if (Number(cartData[i]["quantity"]) > cartData[i]["selectQuantity"]) {
-              counter = cartData[i]["selectQuantity"] + 1;
-            }
-            else {
-              alert("Limit Exceeds");
-              counter = cartData[i]["quantity"]
-            }
-            cartData[i]["selectQuantity"] = counter;
-            localStorage.setItem("cartData", JSON.stringify([...cartData]));
-          }
-        });
-      })
+  function handleCart(item) {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+
+    if (cartData === null) {
+      localStorage.setItem("cartData", JSON.stringify([item]));
+      addToCard([item]);
+      alert("Item Added Successfully");
     }
     else {
-      changeQuantity(() => {
-        return cartData.map((value, i) => {
-          if (value["id"] === id) {
-            if (cartData[i]["selectQuantity"] > 1) {
-              counter = cartData[i]["selectQuantity"] - 1;
-            }
-            else {
-              alert("Atlease Mini");
-              counter = 1;
-            }
-
-            cartData[i]["selectQuantity"] = counter;
-            localStorage.setItem("cartData", JSON.stringify([...cartData]));
-          }
-        });
-      })
+      var idArray = cartData.map((value) => {
+        return value["id"];
+      });
+      var isFind = idArray.find((value) => {
+        return item["id"] === value
+      });
+      if (isFind === undefined) {
+        localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
+        addToCard([...cartData, item]);
+        alert("Item Added Successfully");
+      }
+      else {
+        alert("Item Already Available in Cart");
+      }
     }
   }
 
+  function handleDelete(id) {
 
-  function handleCart(item) {
-    addToCard((oldTask) => {
-      if (oldTask.length === 0) {
-        alert("Product Added Successfully")
-        localStorage.setItem("cartData", JSON.stringify([...oldTask, item]));
-        return [...oldTask, item];
-      }
-      else {
-        var data = cartData.find((value, i) => {
-          return cartData[i.toString()]["id"] === item["id"];
-        });
-        if (data === undefined) {
-          alert("Product Added Successfully")
-          localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
-          return [...cartData, item];
-        }
-        else {
-          alert("Product Already Added");
-          localStorage.setItem("cartData", JSON.stringify([...cartData]));
-          return [...cartData];
-        }
-      }
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    var idArray = cartData.map((value) => {
+      return value["id"];
     });
+    var isFind = idArray.find((value) => {
+      return id === value
+    });
+    var newArray = cartData.filter((value) => {
+      return value["id"] !== id;
+    });
+
+    console.log(newArray, "New Array");
+    localStorage.setItem("cartData", JSON.stringify([...newArray]));
+    deleteCartItem([...newArray]);
   }
 
   useEffect(() => {
@@ -108,7 +110,7 @@ const App = () => {
           <Route element={<NavBar />} >
             <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
             <Route path="category-page" element={<Category />} />
-            <Route path="cart-page" element={<Cart cartData={cartData} changeQuantity={manageQuantity} />} />
+            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} />} />
             <Route path="my-orders-page" element={<MyOrder />} />
           </Route>
         </Route>

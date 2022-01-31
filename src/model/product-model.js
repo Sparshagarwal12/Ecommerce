@@ -2,7 +2,7 @@
 
 const productName = [
     { id: 1, name: "Apple", image: require('../assets/images/apple.png'), description: "This is product 1", price: 400, quantity: 12, selectQuantity: 1 },
-    { id: 2, name: "Bread", image: require('../assets/images/bread.png'), description: "This is product 1", price: 300, quantity: 10, selectQuantity: 1 },
+    { id: 2, name: "Bread", image: require('../assets/images/bread.png'), description: "This is product 2", price: 300, quantity: 10, selectQuantity: 1 },
     { id: 3, name: "Maggie", image: require('../assets/images/maggi.png'), description: "This is product 3", price: 200, quantity: 5, selectQuantity: 1 },
     { id: 4, name: "Soup", image: require('../assets/images/soup.png'), description: "This is product 4", price: 900, quantity: 100, selectQuantity: 1 },
     { id: 5, name: "Potato", image: require('../assets/images/potato.png'), description: "This is product 5", price: 80, quantity: 16, selectQuantity: 1 },
