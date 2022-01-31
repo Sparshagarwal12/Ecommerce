@@ -1,14 +1,14 @@
 
 
 const productName = [
-    { id: 1, name: "Apple", image: require('../assets/images/apple.png'), description: "This is product 1", price: 400, quantity: 12, selectQuantity: 1 },
-    { id: 2, name: "Bread", image: require('../assets/images/bread.png'), description: "This is product 2", price: 300, quantity: 10, selectQuantity: 1 },
-    { id: 3, name: "Maggie", image: require('../assets/images/maggi.png'), description: "This is product 3", price: 200, quantity: 5, selectQuantity: 1 },
-    { id: 4, name: "Soup", image: require('../assets/images/soup.png'), description: "This is product 4", price: 900, quantity: 100, selectQuantity: 1 },
-    { id: 5, name: "Potato", image: require('../assets/images/potato.png'), description: "This is product 5", price: 80, quantity: 16, selectQuantity: 1 },
-    { id: 6, name: "Ketchup", image: require('../assets/images/ketchup.png'), description: "This is product 6", price: 300, quantity: 3, selectQuantity: 1 },
-    { id: 7, name: "Onion", image: require('../assets/images/onion.png'), description: "This is product 7", price: 550, quantity: 3, selectQuantity: 1 },
-    { id: 8, name: "Tomato", image: require('../assets/images/tomato.png'), description: "This is product 8", price: 40, quantity: 3, selectQuantity: 1 },
+    { id: 1, name: "Apple", image: require('../assets/images/apple.png'), description: "This is product 1", actualPrice: 400, price: 400, quantity: 12, selectQuantity: 1 },
+    { id: 2, name: "Bread", image: require('../assets/images/bread.png'), description: "This is product 2", actualPrice: 300, price: 300, quantity: 10, selectQuantity: 1 },
+    { id: 3, name: "Maggie", image: require('../assets/images/maggi.png'), description: "This is product 3", actualPrice: 200, price: 200, quantity: 5, selectQuantity: 1 },
+    { id: 4, name: "Soup", image: require('../assets/images/soup.png'), description: "This is product 4", actualPrice: 900, price: 900, quantity: 100, selectQuantity: 1 },
+    { id: 5, name: "Potato", image: require('../assets/images/potato.png'), description: "This is product 5", actualPprice: 80, price: 80, quantity: 16, selectQuantity: 1 },
+    { id: 6, name: "Ketchup", image: require('../assets/images/ketchup.png'), description: "This is product 6", actualPrice: 300, price: 300, quantity: 3, selectQuantity: 1 },
+    { id: 7, name: "Onion", image: require('../assets/images/onion.png'), description: "This is product 7", actualPrice: 550, price: 550, quantity: 3, selectQuantity: 1 },
+    { id: 8, name: "Tomato", image: require('../assets/images/tomato.png'), description: "This is product 8", actualPprice: 40, price: 40, quantity: 3, selectQuantity: 1 },
 ];
 
 const topProduct = [

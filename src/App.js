@@ -17,43 +17,16 @@ import MyOrder from './screens/myorder/MyOrder';
 //Imports for Styling
 import './screens/auth/signinPage/signin.css';
 const App = () => {
-  const cartData = JSON.parse(localStorage.getItem("cartData"));
-
-
   //for getting data from local storage
+  const cartData = JSON.parse(localStorage.getItem("cartData"));
 
   //for adding item in cart
   const [cartItem, addToCard] = useState([]);
   const [deleteItem, deleteCartItem] = useState([]);
+  const [increaseValue, increaseState] = useState([]);
+  const [decreaseValue, decreaseState] = useState([]);
 
-  // function handleCart(item) {
-  //   addToCard((oldTask) => {
-  //     if (oldTask && !oldTask.length) {
-  //       console.log(cartData);
-
-  //       alert("Product Added Successfully")
-  //       localStorage.setItem("cartData", JSON.stringify([...oldTask, item]));
-  //       return [...oldTask, item];
-  //     }
-  //     else {
-  //       var data = cartData.find((value, i) => {
-  //         return cartData[i.toString()]["id"] === item["id"];
-  //       });
-  //       if (data === undefined) {
-  //         console.log(cartData);
-  //         alert("Product Added Successfully")
-  //         localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
-  //         return [...cartData, item];
-  //       }
-  //       else {
-  //         alert("Product Already Added");
-  //         localStorage.setItem("cartData", JSON.stringify([...cartData]));
-  //         return [...cartData];
-  //       }
-  //     }
-  //   });
-  // }
-
+  //Add to cart functionality working
   function handleCart(item) {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
 
@@ -80,27 +53,54 @@ const App = () => {
     }
   }
 
-  function handleDelete(id) {
 
+  //handle functionality working
+  function handleDelete(id) {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
-    var idArray = cartData.map((value) => {
-      return value["id"];
-    });
-    var isFind = idArray.find((value) => {
-      return id === value
-    });
     var newArray = cartData.filter((value) => {
       return value["id"] !== id;
     });
-
     console.log(newArray, "New Array");
     localStorage.setItem("cartData", JSON.stringify([...newArray]));
     deleteCartItem([...newArray]);
   }
 
+  function handleIncrease(id) {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    cartData.forEach((value) => {
+      if (value["id"] === id) {
+        if (value["selectQuantity"] < value["quantity"]) {
+          value["selectQuantity"] += 1;
+          value["price"] = Number(value["actualPrice"]) * Number(value["selectQuantity"]);
+        }
+        else {
+          alert("Limit Exceeds");
+        }
+      }
+    });
+    increaseState([...cartData]);
+    localStorage.setItem("cartData", JSON.stringify([...cartData]));
+  }
+
+  function handleDecrease(id) {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    cartData.forEach((value) => {
+      if (value["id"] === id) {
+        if (value["selectQuantity"] > 1) {
+          value["selectQuantity"] -= 1;
+          value["price"] = Number(value["actualPrice"]) * Number(value["selectQuantity"]);
+        }
+        else {
+          alert("Limit Exceeds");
+        }
+      }
+    });
+    decreaseState([...cartData]);
+    localStorage.setItem("cartData", JSON.stringify([...cartData]));
+  }
+
   useEffect(() => {
   });
-
 
   return (
     <BrowserRouter>
@@ -110,7 +110,7 @@ const App = () => {
           <Route element={<NavBar />} >
             <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
             <Route path="category-page" element={<Category />} />
-            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} />} />
+            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} increase={handleIncrease} decrease={handleDecrease} />} />
             <Route path="my-orders-page" element={<MyOrder />} />
           </Route>
         </Route>

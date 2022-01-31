@@ -9,7 +9,7 @@ function Cart(props) {
             <div className='card-page-list'>
                 {
                     props.cartData.map((value, index) => {
-                        return <CartCard key={props.id} item={value} changeQuantity={props.changeQuantity} delete={props.delete} index={index} />
+                        return <CartCard key={props.id} item={value} delete={props.delete} increase={props.increase} decrease={props.decrease} />
                     })
                 }
             </div>
