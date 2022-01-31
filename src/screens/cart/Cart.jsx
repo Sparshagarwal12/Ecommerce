@@ -5,7 +5,7 @@ import CartCard from '../../component/CartCard';
 
 function Cart(props) {
     return <div className='cart-page-view'>
-        {props.cartData !== null ? <>
+        {props.total !== 0 ? <>
             <div className='card-page-list'>
                 {
                     props.cartData.map((value, index) => {
@@ -13,9 +13,9 @@ function Cart(props) {
                     })
                 }
             </div>
-            <Calculation item={props.cartData} />
+            <Calculation item={props.cartData} total={props.total} />
         </> :
-            <div>No Data</div>
+            <div className='cart-page-no-data'>No Data</div>
         }
     </div>;
 }

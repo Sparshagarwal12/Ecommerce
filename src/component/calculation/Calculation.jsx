@@ -15,7 +15,7 @@ function Calculation(props) {
           })
         }
       </ul>
-      <div className='cal-page-total'><p>Total</p><p>Rs. 2000</p></div>
+      <div className='cal-page-total'><p>Total</p><p>Rs. {props.total}</p></div>
     </div>
     <div className='button-align'>
       <button className='cal-page-buy-now'>Buy Now</button>

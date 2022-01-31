@@ -25,6 +25,7 @@ const App = () => {
   const [deleteItem, deleteCartItem] = useState([]);
   const [increaseValue, increaseState] = useState([]);
   const [decreaseValue, decreaseState] = useState([]);
+  const [totalValue, totalState] = useState(0);
 
   //Add to cart functionality working
   function handleCart(item) {
@@ -32,7 +33,9 @@ const App = () => {
 
     if (cartData === null) {
       localStorage.setItem("cartData", JSON.stringify([item]));
+      handleTotal();
       addToCard([item]);
+
       alert("Item Added Successfully");
     }
     else {
@@ -44,6 +47,7 @@ const App = () => {
       });
       if (isFind === undefined) {
         localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
+        handleTotal();
         addToCard([...cartData, item]);
         alert("Item Added Successfully");
       }
@@ -60,8 +64,10 @@ const App = () => {
     var newArray = cartData.filter((value) => {
       return value["id"] !== id;
     });
-    console.log(newArray, "New Array");
+
     localStorage.setItem("cartData", JSON.stringify([...newArray]));
+    handleTotal();
+
     deleteCartItem([...newArray]);
   }
 
@@ -78,8 +84,10 @@ const App = () => {
         }
       }
     });
-    increaseState([...cartData]);
     localStorage.setItem("cartData", JSON.stringify([...cartData]));
+    handleTotal();
+    increaseState([...cartData]);
+
   }
 
   function handleDecrease(id) {
@@ -95,11 +103,34 @@ const App = () => {
         }
       }
     });
-    decreaseState([...cartData]);
     localStorage.setItem("cartData", JSON.stringify([...cartData]));
+    handleTotal();
+    decreaseState([...cartData]);
+
+  }
+
+  //Get total value of the cart
+  function handleTotal() {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+
+    if (cartData !== null && cartData !== undefined && cartData.length !== 0) {
+      var priceArray = cartData.map((value) => {
+        return value["price"];
+      })
+      var totalPrice = priceArray.reduce((total, next) => {
+        return total + next;
+      })
+      totalState(totalPrice)
+    }
+    else {
+      totalState(0)
+    }
+
   }
 
   useEffect(() => {
+    handleTotal();
+
   });
 
   return (
@@ -110,7 +141,7 @@ const App = () => {
           <Route element={<NavBar />} >
             <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
             <Route path="category-page" element={<Category />} />
-            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} increase={handleIncrease} decrease={handleDecrease} />} />
+            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} increase={handleIncrease} decrease={handleDecrease} total={totalValue} />} />
             <Route path="my-orders-page" element={<MyOrder />} />
           </Route>
         </Route>
