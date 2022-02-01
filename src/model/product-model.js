@@ -8,7 +8,7 @@ const productName = [
     { id: 5, name: "Potato", image: require('../assets/images/potato.png'), description: "This is product 5", actualPrice: 80, price: 80, quantity: 16, selectQuantity: 1 },
     { id: 6, name: "Ketchup", image: require('../assets/images/ketchup.png'), description: "This is product 6", actualPrice: 300, price: 300, quantity: 3, selectQuantity: 1 },
     { id: 7, name: "Onion", image: require('../assets/images/onion.png'), description: "This is product 7", actualPrice: 550, price: 550, quantity: 3, selectQuantity: 1 },
-    { id: 8, name: "Tomato", image: require('../assets/images/tomato.png'), description: "This is product 8", actualPprice: 40, price: 40, quantity: 3, selectQuantity: 1 },
+    { id: 8, name: "Tomato", image: require('../assets/images/tomato.png'), description: "This is product 8", actualPrice: 40, price: 40, quantity: 3, selectQuantity: 1 },
 ];
 
 const topProduct = [

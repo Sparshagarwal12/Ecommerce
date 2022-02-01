@@ -22,7 +22,6 @@
     display: flex;
     margin: 0px 0px 0px 100px;
     top: 20px;
-    color: white;
     font-size: 16px;
     left: 60px;
     font-family: 'Roboto', sans-serif;
@@ -117,4 +116,32 @@
   .nav-bar-category-item4:hover:after{
       transform: scaleX(1);
     transform-origin: bottom left;
+  }
+
+  .nav-bar-cart{
+    font-size: 30px;
+    margin: 0 0 0 auto;
+    position: absolute;
+    color: black;
+    right: 140px;
+    top: 15px;
+  }
+
+  .nav-bar-cart-dark{
+    font-size: 30px;
+    margin: 0 0 0 auto;
+    position: absolute;
+    right: 140px;
+    color: white;
+    top: 15px;
+  }
+
+  .nav-bar-toggle{
+    height: 35px;
+    margin: 0 0 0 auto;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 40px;
+    top: 15px;
   }

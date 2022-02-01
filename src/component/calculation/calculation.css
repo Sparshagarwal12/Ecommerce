@@ -42,7 +42,6 @@
     padding-top: 10px;
     padding-bottom: auto;
     font-weight: 600;
-    color: white;
     font-family: 'Nunito', sans-serif;
     cursor: pointer;
     border: none;
@@ -55,4 +54,61 @@
     top: 490px;
     right: 10px;
     width: 20%;
+}
+
+/* Dark Theme */
+
+.cal-container-dark{
+    height: 430px;
+    border-radius: 5px;
+    width: 270px;
+    display: block;
+    margin: 50px 10px auto auto;
+    background-color: #082032;
+    box-shadow: 2px 2px 10px 0px #171717;
+}
+
+.cal-page-price-dark{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+}
+
+.cal-page-product-spec-dark{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 15px;
+    margin:0 10px 0 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.cal-page-total-dark{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 600;
+    margin: auto 10px 0 10px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.cal-page-buy-now-dark{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: auto;
+    font-weight: 600;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    border: none;
+    background-color: #082032;
+    border-radius: 5px;
 }

@@ -16,6 +16,10 @@ import MyOrder from './screens/myorder/MyOrder';
 
 //Imports for Styling
 import './screens/auth/signinPage/signin.css';
+import Checkout from './screens/checkout/Checkout.jsx';
+
+const ThemeContext = React.createContext();
+
 const App = () => {
   //for getting data from local storage
   const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -27,6 +31,10 @@ const App = () => {
   const [decreaseValue, decreaseState] = useState([]);
   const [totalValue, totalState] = useState(0);
 
+  const [theme, changeTheme] = useState("Light");
+  const value = { theme, changeTheme }
+
+  
   //Add to cart functionality working
   function handleCart(item) {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
@@ -71,6 +79,7 @@ const App = () => {
     deleteCartItem([...newArray]);
   }
 
+  //increase quantity
   function handleIncrease(id) {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     cartData.forEach((value) => {
@@ -90,6 +99,7 @@ const App = () => {
 
   }
 
+  //decrease quantity
   function handleDecrease(id) {
     const cartData = JSON.parse(localStorage.getItem("cartData"));
     cartData.forEach((value) => {
@@ -130,24 +140,31 @@ const App = () => {
 
   useEffect(() => {
     handleTotal();
-
   });
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route element={<ProtectedRoute />}>
-          <Route element={<NavBar />} >
-            <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
-            <Route path="category-page" element={<Category />} />
-            <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} increase={handleIncrease} decrease={handleDecrease} total={totalValue} />} />
-            <Route path="my-orders-page" element={<MyOrder />} />
+    <ThemeContext.Provider value={value}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={
+              // <ThemeContext.Provider value={value}>
+                <NavBar />
+              // </ThemeContext.Provider>
+            } >
+              <Route path="home-page" element={<HomePage handleCart={handleCart} />} />
+              <Route path="category-page" element={<Category />} />
+              <Route path="cart-page" element={<Cart cartData={cartData} delete={handleDelete} increase={handleIncrease} decrease={handleDecrease} total={totalValue}/>} />
+              <Route path="my-orders-page" element={<MyOrder />} />
+            </Route>
+            <Route path="check-out" element={<Checkout />} />
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 }
 
 export default App;
+export { ThemeContext };

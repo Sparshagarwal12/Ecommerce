@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Calculation from '../../component/calculation/Calculation';
 import '../cart/cart.css';
 import CartCard from '../../component/CartCard';
+import { ThemeContext } from '../../App';
 
 function Cart(props) {
-    return <div className='cart-page-view'>
+
+    const theme = useContext(ThemeContext);
+
+    return <div className={theme.theme === "Dark" ? 'cart-page-view-dark' : 'cart-page-view'}>
         {props.total !== 0 ? <>
             <div className='card-page-list'>
                 {
