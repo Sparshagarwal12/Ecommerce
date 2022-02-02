@@ -14,12 +14,12 @@ function HomePage(props) {
                 {/* Display Top categories product in list */}
                 <div className='top-category-heading'>Top Categories</div>
                 <div className='product-list-view'> {
-                    topProduct.map((item) => {
-                        return (<><div className='product-card'>
+                    topProduct.map((item) => 
+                        <div className='product-card'>
                             <img src={item.image} className='product-image' alt="" />
                             <div className='product-name'>{item.name}</div>
-                        </div></>);
-                    })
+                        </div>
+                    )
                 } </div>
 
                 {/* Display Top Products in grid view */}

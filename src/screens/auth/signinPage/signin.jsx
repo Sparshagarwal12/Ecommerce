@@ -38,7 +38,6 @@ const LoginPage = () => {
         else {
             setIsOpen(!isOpen);
         }
-
     }
     return (
         <>
