@@ -53,7 +53,7 @@ const App = () => {
       var isFind = idArray.find((value) => {
         return item["id"] === value
       });
-      if (isFind === undefined) {
+      if (isFind) {
         localStorage.setItem("cartData", JSON.stringify([...cartData, item]));
         handleTotal();
         addToCard([...cartData, item]);

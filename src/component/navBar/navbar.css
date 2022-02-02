@@ -119,25 +119,27 @@
   }
 
   .nav-bar-cart{
-    font-size: 30px;
+    font-size: 25px;
     margin: 0 0 0 auto;
     position: absolute;
     color: black;
     right: 140px;
-    top: 15px;
+    cursor: pointer;
+    top: 20px;
   }
 
   .nav-bar-cart-dark{
-    font-size: 30px;
+    font-size: 25px;
     margin: 0 0 0 auto;
     position: absolute;
+    cursor: pointer;
     right: 140px;
     color: white;
-    top: 15px;
+    top: 20px;
   }
 
   .nav-bar-toggle{
-    height: 35px;
+    height: 30px;
     margin: 0 0 0 auto;
     border: none;
     background-color: transparent;
